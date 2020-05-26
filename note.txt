@@ -1,0 +1,6 @@
+1. We if we are in the setting mode, what we type in will 
+just be send to the xbee itself
+
+2. but if we are not it the setting, xbee will send whatever it is get 
+ex: xbee.printf("aaaa") will actually pass the string "aaa", to the xbee
+and it will send it to another xbee!

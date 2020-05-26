@@ -49,8 +49,8 @@ print("Exit AT mode.")
 print(char.decode())
 #-----------------------------------------------
 # send to remote
-s.write("a".encode())
-line = s.read(2)
+s.write("abcd\r\n".encode())
+line = s.read(4)
 print('Get: ', line.decode())
 
 s.close()
