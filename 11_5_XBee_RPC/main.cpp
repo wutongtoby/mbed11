@@ -1,5 +1,5 @@
 #include "mbed.h"
-#include "mbed_rpc.h"
+#include "mbed_rpc.h" 
 
 RawSerial pc(USBTX, USBRX);
 RawSerial xbee(D12, D11);
@@ -7,9 +7,9 @@ RawSerial xbee(D12, D11);
 EventQueue queue(32 * EVENTS_EVENT_SIZE);
 Thread t;
 
-RpcDigitalOut myled1(LED1,"myled1");
-RpcDigitalOut myled2(LED2,"myled2");
-RpcDigitalOut myled3(LED3,"myled3");
+RpcDigitalOut myled1(LED1, "myled1");
+RpcDigitalOut myled2(LED2, "myled2");
+RpcDigitalOut myled3(LED3, "myled3");
 
 void xbee_rx_interrupt(void);
 void xbee_rx(void);
@@ -21,28 +21,30 @@ int main(){
 
     char xbee_reply[4];
 
-    // XBee setting
+    // XBee setting(initilizatioin)
     xbee.baud(9600);
     xbee.printf("+++");
     xbee_reply[0] = xbee.getc();
     xbee_reply[1] = xbee.getc();
-    if(xbee_reply[0] == 'O' && xbee_reply[1] == 'K') {
+
+    if (xbee_reply[0] == 'O' && xbee_reply[1] == 'K') {
         pc.printf("enter AT mode.\r\n");
         xbee_reply[0] = '\0';
         xbee_reply[1] = '\0';
     }
-    xbee.printf("ATMY <REMOTE_MY>\r\n");
-    reply_messange(xbee_reply, "setting MY : <REMOTE_MY>");
+    xbee.printf("ATMY 0x40\r\n");
+    reply_messange(xbee_reply, "setting MY : 40");
 
-    xbee.printf("ATDL <REMOTE_DL>\r\n");
-    reply_messange(xbee_reply, "setting DL : <REMOTE_DL>");
+    xbee.printf("ATDL 0x41\r\n");
+    reply_messange(xbee_reply, "setting DL : 41");
 
-    xbee.printf("ATID <PAN_ID>\r\n");
-    reply_messange(xbee_reply, "setting PAN ID : <PAN_ID>");
+    xbee.printf("ATID 0x1\r\n");
+    reply_messange(xbee_reply, "setting PAN ID : 1");
 
     xbee.printf("ATWR\r\n");
     reply_messange(xbee_reply, "write config");
-
+    
+    // check if the configuration is set correctely
     xbee.printf("ATMY\r\n");
     check_addr(xbee_reply, "MY");
 
@@ -72,14 +74,18 @@ void xbee_rx(void)
     char buf[100] = {0};
     char outbuf[100] = {0};
     while (xbee.readable()) {
-        for (int i=0; ; i++) {
+        // read until '\r' or 100 characters
+        for (int i = 0; ; i++) {
             char recv = xbee.getc();
             if (recv == '\r') {
                 break;
             }
             buf[i] = pc.putc(recv);
+            // put whatever type in on the screen
         }
+        // put the command to rpc
         RPC::call(buf, outbuf);
+        // print out the reply from rpc
         pc.printf("%s\r\n", outbuf);
         wait(0.1);
     }
