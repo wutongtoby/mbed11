@@ -1,84 +1,84 @@
 [
     {
-        "module": "../..",
         "size": {
             ".bss": 6682,
+            ".data-delta": 0,
             ".data": 473,
             ".text": 37019,
-            ".data-delta": 0,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "../.."
     },
     {
-        "module": "BUILD/K66F",
         "size": {
             ".bss": 571,
-            ".data": 20,
-            ".text": 2803,
             ".data-delta": 0,
+            ".data": 20,
+            ".text": 2867,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "BUILD/K66F"
     },
     {
-        "module": "[fill]",
         "size": {
             ".bss": 38,
+            ".data-delta": 0,
             ".data": 7,
             ".text": 200,
-            ".data-delta": 0,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "[fill]"
     },
     {
-        "module": "[lib]/c.a",
         "size": {
             ".bss": 89,
+            ".data-delta": 0,
             ".data": 2472,
             ".text": 25769,
-            ".data-delta": 0,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "[lib]/c.a"
     },
     {
-        "module": "[lib]/gcc.a",
         "size": {
             ".bss": 0,
+            ".data-delta": 0,
             ".data": 0,
             ".text": 3112,
-            ".data-delta": 0,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "[lib]/gcc.a"
     },
     {
-        "module": "[lib]/misc",
         "size": {
             ".bss": 28,
+            ".data-delta": 0,
             ".data": 4,
             ".text": 180,
-            ".data-delta": 0,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "[lib]/misc"
     },
     {
-        "module": "[lib]/nosys.a",
         "size": {
             ".bss": 0,
+            ".data-delta": 0,
             ".data": 0,
             ".text": 32,
-            ".data-delta": 0,
             ".text-delta": 0,
             ".bss-delta": 0
-        }
+        },
+        "module": "[lib]/nosys.a"
     },
     {
         "summary": {
-            "total_flash": 72091,
+            "total_flash": 72155,
             "total_flash_delta": 0,
             "static_ram": 10384,
             "static_ram_delta": 0

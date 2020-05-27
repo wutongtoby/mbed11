@@ -110,8 +110,10 @@ void xbee_rx_interrupt(void)
 
 void xbee_rx(void)
 {
-    char buf[100] = {0};
+    char buf[100];
     char outbuf[100] = {0};
+    memset(buf, 0, 100);
+    
     while (xbee.readable()) {
         // read until '\r' or 100 characters
         for (int i = 0; ; i++) {
@@ -171,12 +173,12 @@ void acc(Arguments *in, Reply *out) {
         acc16 -= UINT14_MAX;
     axis[2] = ((float)acc16) / 4096.0f;
     
-    xbee.printf("\r\nFXOS8700Q ACC: X=%1.4f(%x%x) Y=%1.4f(%x%x) Z=%1.4f(%x%x)\r\n",\
+    xbee.printf("FXOS8700Q ACC: X=%1.4f(%x%x) Y=%1.4f(%x%x) Z=%1.4f(%x%x)\n",\
         axis[0], res[0], res[1],\
         axis[1], res[2], res[3],\
         axis[2], res[4], res[5]\
     );
-    pc.printf("FXOS8700Q ACC: X=%1.4f(%x%x) Y=%1.4f(%x%x) Z=%1.4f(%x%x)\r\n",\
+    pc.printf("\r\nFXOS8700Q ACC: X=%1.4f(%x%x) Y=%1.4f(%x%x) Z=%1.4f(%x%x)\r\n",\
     axis[0], res[0], res[1],\
     axis[1], res[2], res[3],\
     axis[2], res[4], res[5]\

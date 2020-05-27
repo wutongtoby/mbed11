@@ -2,7 +2,7 @@ import serial
 import time
 
 # XBee setting
-serdev = '/dev/ttyUSB1'
+serdev = '/dev/ttyUSB0'
 s = serial.Serial(serdev, 9600)
 
 s.write("+++".encode())
@@ -55,7 +55,8 @@ while True:
     i = i + 1
     time.sleep(1)
     line=s.readline()
-   
     print(line)
+   
+  
     
 s.close()
